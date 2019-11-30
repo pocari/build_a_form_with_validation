@@ -25,6 +25,23 @@ class MyCustomForm extends StatefulWidget {
 
 class MyCustomFormState extends State<MyCustomForm> {
   final _formKey = GlobalKey<FormState>();
+  final myController = TextEditingController();
+
+  void _printLatestValue() {
+    print("Second text field: ${myController.text}");
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    myController.addListener(_printLatestValue);
+  }
+
+  @override
+  void dispose() {
+    myController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +66,7 @@ class MyCustomFormState extends State<MyCustomForm> {
               onChanged: (text) {
                 print("onChanged: Name: $text");
               },
+              controller: myController,
             ),
             TextFormField(
               decoration: InputDecoration(
