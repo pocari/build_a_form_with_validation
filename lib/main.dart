@@ -28,15 +28,39 @@ class MyCustomFormState extends State<MyCustomForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: TextFormField(
-        validator: (v) {
-          if (v.isEmpty) {
-            return '何か入力して下さい';
+    return Scaffold(
+      body: Form(
+        key: _formKey,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            TextFormField(
+              validator: (v) {
+                if (v.isEmpty) {
+                  return '名前を入力して下さい';
+                }
+                return null;
+              },
+            ),
+            TextFormField(
+              validator: (v) {
+                if (v.isEmpty) {
+                  return 'メールアドレスを入力して下さい';
+                }
+                return null;
+              },
+            )
+          ],
+        ),
+      ),
+      floatingActionButton: RaisedButton(
+        onPressed: () {
+          if (_formKey.currentState.validate()) {
+            Scaffold.of(context)
+                .showSnackBar(SnackBar(content: Text('Processing Data')));
           }
-          return null;
         },
+        child: Text('Submit'),
       ),
     );
   }
