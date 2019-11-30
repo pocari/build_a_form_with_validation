@@ -84,14 +84,31 @@ class MyCustomFormState extends State<MyCustomForm> {
           ],
         ),
       ),
-      floatingActionButton: RaisedButton(
-        onPressed: () {
-          if (_formKey.currentState.validate()) {
-            Scaffold.of(context)
-                .showSnackBar(SnackBar(content: Text('Processing Data')));
-          }
-        },
-        child: Text('Submit'),
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: <Widget>[
+          RaisedButton(
+            onPressed: () {
+              if (_formKey.currentState.validate()) {
+                Scaffold.of(context)
+                    .showSnackBar(SnackBar(content: Text('Processing Data')));
+              }
+            },
+            child: Text('Submit'),
+          ),
+          FloatingActionButton(
+            onPressed: () {
+              return showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      content: Text(myController.text),
+                    );
+                  });
+            },
+            child: Icon(Icons.text_fields),
+          ),
+        ],
       ),
     );
   }
