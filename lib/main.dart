@@ -35,6 +35,11 @@ class MyCustomFormState extends State<MyCustomForm> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             TextFormField(
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                labelText: "Name",
+                hintText: 'Jane Doe',
+              ),
               validator: (v) {
                 if (v.isEmpty) {
                   return '名前を入力して下さい';
@@ -43,6 +48,11 @@ class MyCustomFormState extends State<MyCustomForm> {
               },
             ),
             TextFormField(
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: 'hoge@example.com',
+                labelText: "Email",
+              ),
               validator: (v) {
                 if (v.isEmpty) {
                   return 'メールアドレスを入力して下さい';
