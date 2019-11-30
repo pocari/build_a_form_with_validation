@@ -46,6 +46,9 @@ class MyCustomFormState extends State<MyCustomForm> {
                 }
                 return null;
               },
+              onChanged: (text) {
+                print("onChanged: Name: $text");
+              },
             ),
             TextFormField(
               decoration: InputDecoration(
