@@ -30,8 +30,13 @@ class MyCustomFormState extends State<MyCustomForm> {
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
-      child: Center(
-        child: Text('test form'),
+      child: TextFormField(
+        validator: (v) {
+          if (v.isEmpty) {
+            return '何か入力して下さい';
+          }
+          return null;
+        },
       ),
     );
   }
