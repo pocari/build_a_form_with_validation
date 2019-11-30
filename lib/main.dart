@@ -26,6 +26,7 @@ class MyCustomForm extends StatefulWidget {
 class MyCustomFormState extends State<MyCustomForm> {
   final _formKey = GlobalKey<FormState>();
   final myController = TextEditingController();
+  final myForcusNode = FocusNode();
 
   void _printLatestValue() {
     print("Second text field: ${myController.text}");
@@ -40,6 +41,7 @@ class MyCustomFormState extends State<MyCustomForm> {
   @override
   void dispose() {
     myController.dispose();
+    myForcusNode.dispose();
     super.dispose();
   }
 
@@ -69,6 +71,8 @@ class MyCustomFormState extends State<MyCustomForm> {
               controller: myController,
             ),
             TextFormField(
+              autofocus: true,
+              focusNode: myForcusNode,
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText: 'hoge@example.com',
@@ -107,6 +111,12 @@ class MyCustomFormState extends State<MyCustomForm> {
                   });
             },
             child: Icon(Icons.text_fields),
+          ),
+          RaisedButton(
+            onPressed: () {
+              FocusScope.of(context).requestFocus(myForcusNode);
+            },
+            child: Text("Email にforcus"),
           ),
         ],
       ),
